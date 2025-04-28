@@ -1,0 +1,10 @@
+@layer normal, high-priority;
+
+@layer high-priority {
+    .disabled {
+        pointer-events: none;
+        opacity: 0.8;
+        cursor: not-allowed;
+        background-color: red;
+    }
+}

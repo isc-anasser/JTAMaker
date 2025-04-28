@@ -1,0 +1,5 @@
+<cert-controls (command)="executeCommand($event)"></cert-controls>
+<section #content contenteditable 
+    (keyup.shift.control.s)="executeCommand({name: 'strikethrough'})"
+    (blur)="updateHtml()">
+</section>

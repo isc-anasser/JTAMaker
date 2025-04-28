@@ -1,0 +1,24 @@
+<main>
+    @for (button of buttonsArr; track $index) {
+    <button (pointerdown)="$event.preventDefault();command.emit({name: button.name})">{{button.symbol}}</button>
+    }
+    <label (pointerdown)="$event.preventDefault()">
+        FG
+        <input type="color" name="foreColor" id="color" (input)="$event.preventDefault();emmitColor($event)" list="color-list">
+    </label>
+    <label (pointerdown)="$event.preventDefault()">
+        BG
+        <input type="color" name="backColor" id="background-color" (input)="$event.preventDefault();emmitColor($event)" list="color-list">
+    </label>
+    <datalist id="color-list">
+        <option value="#ff5733"></option>
+        <option value="#0077b6"></option>
+        <option value="#40d39c"></option>
+        <option value="#b9e2f8"></option>
+        <option value="#bc98cb"></option>
+        <option value="#4799ae"></option>
+        <option value="#b9e7de"></option>
+        <option value="#fdfd96"></option>
+        <option value="#ffc5c8"></option>
+    </datalist>
+</main>

@@ -1,0 +1,51 @@
+<h2>{{page().title || "Unknown Title"}}</h2>
+<label for="title">
+    Page Title: <input type="text" name="title" id="title" [value]="page().title" (input)="updateTitle($event)">
+</label>
+@for (item of page().content; track item.id) {
+    <div>
+        @switch (item.type) {
+            @case ("info") {
+                <div>
+                    <cert-info [infoObj]="item" />
+                    <button (click)="removeElement(item.id)">Remove Info</button>
+                </div>
+            }
+            @case ("MC") {
+                <div>
+                    <cert-multiple-choice [mcObj]="item" />
+                    <button (click)="removeElement(item.id)">Remove Question</button>
+                </div>
+            }
+            @case ("comment") {
+                <div>
+                    <cert-comment [commentObj]="item"/>
+                    <button (click)="removeElement(item.id)">Remove Comment</button>
+                </div>
+            }
+            @case ("JTA") {
+                <div>
+                    <cert-jta [jtaObj]="item"/>
+                    <button (click)="removeElement(item.id)">Remove JTA</button>
+                </div>
+            }
+        }
+    </div>
+}
+<div [class.disabled]="pageHasJTA">
+    <button (click)="addText()">Add Text</button>
+    <button (click)="addMC()">Add a Question</button>
+    <button (click)="addComment()">Add a Comment box</button>
+</div>
+<button (click)="addJTA()" 
+[class.disabled]="utils.surveyHasJTA()">
+Add Exam Design</button>
+
+<dialog #dialog>
+    <form method="dialog">
+        <p>Adding an exam design to this page will remove all other content.</p>
+        <p>Do you still want to add an exam design?</p>
+        <button value="cancel" (click)="dialogRef().nativeElement.close('cancel')">No</button>
+        <button value="remove" (click)="dialogRef().nativeElement.close('')">Yes</button>
+    </form>
+</dialog>
