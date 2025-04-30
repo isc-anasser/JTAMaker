@@ -1,0 +1,18 @@
+<p>id: {{KSAGroupNumber()+"."+KSAObj().id}}</p>
+<label for="ksa-number">
+    KSA Number:
+    <input type="number" name="ksa-number" (change)="updateKSANumber($event)" [value]="KSAObj().id">
+</label>
+
+<label for="ksa-text">
+    KSA Text:
+    <input type="text" name="ksa-text" (blur)="updateKSAText($event)">
+</label>
+
+<div class="tis">
+    @for (ti of KSAObj().tis; track ti.id) {
+        <cert-targetitem [tiObj]="ti" [ksaNumber]="KSAObj().id" [ksaGroupNumber]="KSAGroupNumber()"/>
+        <button (click)="removeTI(ti.id)">Remove Target Item</button>
+    }
+</div>
+<button (click)="addTI()">Add a Target Item</button>

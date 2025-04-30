@@ -1,0 +1,16 @@
+<div class="ksa">
+    <label for="ksa-group-number">KSA Group number:
+        <input type="number" name="ksa-group-number" number="ksa-group-number" (blur)="updateID($event)" value="{{KSAGroupObj().id}}">
+    </label>
+    <label for="ksa-group-text">KSA Group Text:
+        <input type="text" name="ksa-group-text" id="ksa-group-text" placeholder="Add the text of the KSA Group">
+    </label>
+</div>
+<div class="ksas">
+    @for (ksa of KSAGroupObj().ksas; track ksa.id) {
+        <cert-ksa [KSAObj]="ksa" [KSAGroupNumber]="KSAGroupObj().id" />
+        <button (click)="removeKSA(ksa.id)">Remove KSA</button>
+    }
+    
+</div>
+<button (click)="addKSA()">Add a KSA</button>

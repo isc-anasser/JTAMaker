@@ -1,0 +1,11 @@
+<p>{{ksaGroupNumber() + "." + ksaNumber() + "." + tiObj().id}}</p>
+
+<label for="ti-number">
+    Target Item Number:
+    <input type="number" name="ti-number" (change)="updateTINumber($event)">
+</label>
+
+<label for="ti-text">
+    Target Item Text: 
+    <input type="text" name="ti-text" (blur)="updateTIText($event)">
+</label>

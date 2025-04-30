@@ -1,13 +1,17 @@
-<label for="mc-text" class="mc-text">
-    <!-- <input type="text" name="mc-text" id="{{mcObj().id + '-text'}}"> -->
-    <cert-editor [(html)]="mcObj().text"/>
-</label>
+<div class="stem">
+    <label for="mc-text" class="mc-text">Stem:
+        <!-- <input type="text" name="mc-text" id="{{mcObj().id + '-text'}}"> -->
+        <cert-editor [(html)]="mcObj().text" />
+    </label>
+</div>
 @for (alternative of mcObj().alternatives; track alternative.id) {
-    <cert-editor [(html)]="mcObj().alternatives[$index].text" />
+    <div class="alternative">
+        <span>{{$index | numberToString}}. </span><cert-editor [(html)]="mcObj().alternatives[$index].text" />
+    </div>
     <button (click)="removeAlternative(alternative.id)">Remove alternative</button>
 }
 @if (this.mcObj().hasComment) {
-    <p>Other (Please Specifiy)</p>
+<p>{{mcObj().alternatives.length | numberToString }}. Other (Please Specifiy)</p>
 }
 <button class="add-alternative" (click)="addAlternative()">Add an alternative</button>
 

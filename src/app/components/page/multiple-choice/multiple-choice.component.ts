@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal } from '@angular/core';
 import { MultipleChoice } from '../../../types';
 import { EditorComponent } from "../../editor/editor.component";
+import { NumberToStringPipe } from "../../../pipes/number-to-string.pipe";
 
 @Component({
   selector: 'cert-multiple-choice',
-  imports: [EditorComponent],
+  imports: [EditorComponent, NumberToStringPipe],
   templateUrl: './multiple-choice.component.html',
   styleUrl: './multiple-choice.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush

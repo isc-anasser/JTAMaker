@@ -1,1 +1,7 @@
-<p>jta works!</p>
+<h2>Exam Design</h2>
+<div id="ksa-groups">
+@for (KSAGroup of jtaObj().ksaGroups; track KSAGroup.id) {
+    <cert-ksagroup [KSAGroupObj]="KSAGroup" />
+}
+</div>
+<button (click)="addKSAGroup()">Add a KSA Group</button>

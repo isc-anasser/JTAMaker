@@ -1,0 +1,7 @@
+@layer normal, high-priority;
+
+@layer normal {
+    input[type=number] {
+        width: 2rem;
+    }
+}
