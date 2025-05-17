@@ -22,4 +22,8 @@ export class JtaComponent {
   }
 
   //TODO: Add a remove KSA Group button
+  removeKSAGroup(id:string) {
+    let idx = this.jtaObj().ksaGroups.findIndex(obj => obj.id===id);
+    this.jtaObj().ksaGroups.splice(idx, 1)
+  }
 }

@@ -2,16 +2,16 @@
   <div id="jta-input">
     <h2>JTA Meta Data</h2>
     <label for="start-date">
-      JTA Start Date: <input type="date" name="start-date" id="start-date">
+      JTA Start Date: <input type="date" name="start-date" id="start-date" (change)="setDate($event, true)">
     </label>
     <br>
     <label for="end-date">
-      JTA End Date: <input type="date" name="end-date" id="end-date">
+      JTA End Date: <input type="date" name="end-date" id="end-date" (change)="setDate($event, false)">
     </label>
     <br>
     <label for="exam-name">
       Exam Name:
-      <input type="text" name="exam-name" id="exam-name">
+      <input type="text" name="exam-name" id="exam-name" (blur)="setExamName($event)">
     </label>
   </div>
   <div id="jta-output">
@@ -35,6 +35,8 @@
 }
 <button (click)="addPage()">Add a page</button>
 
+<button (click)="submitSurvey()">Submit JTA Survey</button>
+
 <dialog #warnDialog>
   <form method="dialog">
     <p>Are you sure you want to remove this page?</p>
@@ -44,3 +46,5 @@
     </div>
   </form>
 </dialog>
+
+<div #submission popover="auto"></div>

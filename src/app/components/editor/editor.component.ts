@@ -39,20 +39,70 @@ export class EditorComponent {
         break;
       case "codeBlock":
         {
-          let selection;
+          let selection: Selection | null;
           try {
             selection = this.el.nativeElement.shadowRoot.getSelection();
           } catch (error) {
             selection = document.getSelection();
           }
-          if (!selection) return
+          if (!selection || selection.getRangeAt(0).collapsed) return
           let range = selection.getRangeAt(0);
           if (this.editor().nativeElement.contains(range.commonAncestorContainer)) {
-            let content = `${selection?.getRangeAt(0).cloneContents().textContent}`;
-            document.execCommand('insertHTML', false, `<pre><code>${content}</code></pre>`)
+            let fragment = selection?.getRangeAt(0).cloneContents();
+            let divList = fragment.querySelectorAll('div');
+            divList.forEach((divNode: any) => divNode.outerHTML.replace(/(\/)?div/gm, "br"))
+            let pre = document.createElement('pre');
+            let code = document.createElement('code');
+            code.append(fragment);
+            pre.append(code);
+            document.execCommand('insertHTML', false, `<div><br></div>${pre.outerHTML}<div><br></div>`)
           }
         }
         break;
+      case "unorderedList":
+        {
+          let selection: Selection | null;
+          try {
+            selection = this.el.nativeElement.shadowRoot.getSelection();
+          } catch (error) {
+            selection = document.getSelection();
+          }
+          if (!selection || selection.getRangeAt(0).collapsed) return
+          let range = selection.getRangeAt(0);
+          if (this.editor().nativeElement.contains(range.commonAncestorContainer)) {
+            let fragment = selection?.getRangeAt(0).cloneContents();
+            let divList = fragment.querySelectorAll('div');
+            divList.forEach((divNode: any) => divNode.outerHTML.replace(/(\/)?div/gm, "br"))
+            let ul = document.createElement('ul');
+            let li = document.createElement('li');
+            li.append(fragment);
+            ul.append(li);
+            document.execCommand('insertHTML', false, ul.outerHTML)
+          }
+          break;
+        }
+      case "orderedList":
+        {
+          let selection: Selection | null;
+          try {
+            selection = this.el.nativeElement.shadowRoot.getSelection();
+          } catch (error) {
+            selection = document.getSelection();
+          }
+          if (!selection || selection.getRangeAt(0).collapsed) return
+          let range = selection.getRangeAt(0);
+          if (this.editor().nativeElement.contains(range.commonAncestorContainer)) {
+            let fragment = selection?.getRangeAt(0).cloneContents();
+            let divList = fragment.querySelectorAll('div');
+            divList.forEach((divNode: any) => divNode.outerHTML.replace(/(\/)?div/gm, "br"))
+            let ol = document.createElement('ol');
+            let li = document.createElement('li');
+            li.append(fragment);
+            ol.append(li);
+            document.execCommand('insertHTML', false, ol.outerHTML)
+          }
+          break;
+        }
       default:
         document.execCommand(command.name, false, command.value ? command.value : '')
         break;

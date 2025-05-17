@@ -1,6 +1,8 @@
 export type SurveyContent = {
     examName: string,
     url: string, //URL of the JTA, so /ext/jta/survey/**url**
+    startDate: string,
+    endDate: string,
     pages: Page[]
 };
 export type Page = {

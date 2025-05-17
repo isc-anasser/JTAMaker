@@ -2,6 +2,7 @@
 <div id="ksa-groups">
 @for (KSAGroup of jtaObj().ksaGroups; track KSAGroup.id) {
     <cert-ksagroup [KSAGroupObj]="KSAGroup" />
+    <button (click)="removeKSAGroup(KSAGroup.id)">Remove KSA Group</button>
 }
 </div>
 <button (click)="addKSAGroup()">Add a KSA Group</button>

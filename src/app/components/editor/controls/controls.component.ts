@@ -18,7 +18,9 @@ export class ControlsComponent {
     {name: "italic", symbol: String.fromCodePoint(0x1D44E + 34)},
     {name: "removeFormat", symbol: "X"},
     {name: "inlineCode", symbol: "<c>"},
-    {name: "codeBlock", symbol: "{}"}
+    {name: "codeBlock", symbol: "{}"},
+    {name: "unorderedList", symbol: "\u2022-"},
+    {name: "orderedList", symbol: "1."}
   ]
   emmitColor(e: Event) {
     this.command.emit({name: (e.target as HTMLInputElement).name, value: (e.target as HTMLInputElement).value})
